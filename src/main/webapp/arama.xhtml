@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Arama-Listeleme</title>
+    </h:head>
+    <h:body>
+<h:form>
+    <p:growl id="msgs" showDetail="true"></p:growl>
+    
+    <h:link value="Kayıt Ekleme Sayfasına Gidiş -->" outcome="index" style="color:#25AAE1;font-size: 19px;"></h:link>
+    
+    <p:dataTable value="#{index.liste()}" var="kisi" widgetVar="kisiTable">
+ 
+        <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Search all fields:" />
+                <p:inputText id="globalFilter" onkeyup="PF('kisiTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+            </p:outputPanel>
+        </f:facet>
+ 
+        <p:column filterBy="#{kisi.ad}" sortBy="#{kisi.ad}">
+            <f:facet name="header">İsim</f:facet>
+            <h:outputText value="#{kisi.ad}" />
+        </p:column>
+ 
+        <p:column filterBy="#{kisi.soyad}" sortBy="#{kisi.soyad}">
+            <f:facet name="header">Soyisim</f:facet>
+            <h:outputText value="#{kisi.soyad}" />
+        </p:column>
+ 
+        <p:column filterBy="#{kisi.adres}" sortBy="#{kisi.adres}">
+            <f:facet name="header">Adres</f:facet>
+            <h:outputText value="#{kisi.adres}" />
+        </p:column>
+ 
+        <p:column filterBy="#{kisi.email}" sortBy="#{kisi.email}">
+            <f:facet name="header">E-Mail</f:facet>
+            <h:outputText value="#{kisi.email}" />
+        </p:column>
+ 
+        <p:column filterBy="#{kisi.telefonList}" sortBy="#{kisi.telefonList}">
+            <f:facet name="header">Tel</f:facet>
+            <h:outputText value="#{kisi.telefonList}" />
+        </p:column>
+ 
+        <p:column>
+            <f:facet name="header">SİL</f:facet>
+            <h:commandLink value="Sil" action="#{index.sil(kisi)}" onclick="return confirm('Silmek istediğinize emin misiniz?')" style="color:red;"/>
+        </p:column>
+ 
+        <p:column>
+            <f:facet name="header">GÜNCELLE</f:facet>
+            <h:commandLink value="Güncelle" action="#{index.guncelle(kisi)}" style="color:#25AAE1;"/>
+        </p:column>
+        
+    </p:dataTable>
+</h:form>
+    </h:body>
+</html>
+

@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <h:form>
+            <p:panelGrid columns="2">
+                <p:outputLabel value="ad"/>
+                <p:inputText id="isim" value="#{index.kisi.ad}" validatorMessage="Sayı içermemelidir.">
+                    <f:validateRegex pattern="[a-zA-Z\\s]*"/>
+                    <p:message for="isim" />
+                </p:inputText>
+                <p:outputLabel value="soyad"/>
+                <p:inputText id="soyisim" value="#{index.kisi.soyad}" validatorMessage="Sayı içermemelidir.">
+                    <f:validateRegex pattern="[a-zA-Z\\s]*"/>
+                    <p:message for="soyisim" />
+                </p:inputText>
+                <p:outputLabel value="adres"/>
+                <p:inputText value="#{index.kisi.adres}" />
+                <p:outputLabel value="email"/>
+                <p:inputText id="mail" value="#{index.kisi.email}" validatorMessage="@ ve . içermelidir.">
+                    <f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)" />
+                    <p:message for="mail" />
+                </p:inputText> 
+                <p:commandButton value="Güncelle" action="#{index.guncelle()}"  />
+            </p:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+
